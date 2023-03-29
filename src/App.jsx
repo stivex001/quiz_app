@@ -2,6 +2,8 @@ import { Route, Routes } from "react-router-dom";
 import styled from "styled-components";
 import Header from "./components/Header/Header";
 import Home from "./pages/Home";
+import NewQuiz from "./pages/Newquiz/NewQuiz";
+import Quiz from "./pages/Quiz/Quiz";
 
 const Container = styled.div`
   min-height: 95vh;
@@ -19,6 +21,8 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/demo-quiz" element={<Quiz />} />
+        <Route path="/new-quiz" element={<NewQuiz />} />
       </Routes>
     </Container>
   );
