@@ -7,3 +7,7 @@
     font-family: 'Rubik', sans-serif;
 }
 
+a{
+  text-decoration: inherit;
+  color: inherit;
+}
