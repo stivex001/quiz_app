@@ -1,11 +1,13 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { mobile } from "../responsive";
 
 const Container = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   height: 50vh;
+  ${mobile({ margin: "auto"})}
 `;
 const Desc = styled.h1`
   color: #3f3a3a;
@@ -18,6 +20,7 @@ const LinkItem = styled.div`
   justify-content: space-between;
   margin: 50px 30px 0px;
   gap: 20px;
+  ${mobile({ flexDirection: "column"})}
 `;
 const Linkk = styled(Link)`
   font-size: 15px;

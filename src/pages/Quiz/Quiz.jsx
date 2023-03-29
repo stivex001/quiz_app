@@ -1,9 +1,43 @@
-import React from 'react'
+import styled from "styled-components";
+import hero from '../../assets/hero.png'
+import { mobile } from "../../responsive";
+
+const Container = styled.div`
+display: flex;
+justify-content: space-around;
+/* align-items: center; */
+${mobile({ flexDirection: "column-reverse", alignItems: "center"})}
+`;
+const Settings = styled.div`
+padding: 10px;
+display: flex;
+flex-direction: column;
+align-items: center;
+font-weight: 300;
+${mobile({ width: "100%"})}
+`;
+const Span = styled.span`
+font-size: 30px;
+`;
+const ImgContainer = styled.div``;
+const Img = styled.img`
+width: 55%;
+align-self: center;
+padding: 8px;
+${mobile({ width: "85%", padding: "20px 0 0 0 "})}
+`;
 
 const Quiz = () => {
   return (
-    <div>Quiz</div>
-  )
-}
+    <Container>
+      <Settings>
+        <Span>Quiz Settings</Span>
+      </Settings>
+      <ImgContainer>
+        <Img src={hero} alt="quiz-image" />
+      </ImgContainer>
+    </Container>
+  );
+};
 
-export default Quiz
+export default Quiz;

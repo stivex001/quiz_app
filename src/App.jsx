@@ -4,6 +4,7 @@ import Header from "./components/Header/Header";
 import Home from "./pages/Home";
 import NewQuiz from "./pages/Newquiz/NewQuiz";
 import Quiz from "./pages/Quiz/Quiz";
+import Result from "./pages/Result/Result";
 
 const Container = styled.div`
   min-height: 95vh;
@@ -23,6 +24,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/demo-quiz" element={<Quiz />} />
         <Route path="/new-quiz" element={<NewQuiz />} />
+        <Route path="/result" element={<Result />} />
       </Routes>
     </Container>
   );
