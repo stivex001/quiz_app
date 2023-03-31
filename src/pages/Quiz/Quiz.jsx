@@ -110,7 +110,7 @@ const Quiz = ({ name, setName, fetchQuestions }) => {
             <MenuItem key="Medium" value="medium">
               Medium
             </MenuItem>
-            <MenuItem key="Medium" value="medium">
+            <MenuItem key="Hard" value="hard">
               Hard
             </MenuItem>
           </TextField>
