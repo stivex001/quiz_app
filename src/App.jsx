@@ -40,10 +40,27 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route
           path="/demo-quiz"
-          element={<Quiz name={name} setName={setName} fetchQuestions={fetchQuestions} />}
+          element={
+            <Quiz
+              name={name}
+              setName={setName}
+              fetchQuestions={fetchQuestions}
+            />
+          }
         />
         <Route path="/new-quiz" element={<NewQuiz />} />
-        <Route path="/quiz" element={<QuizGround />} />
+        <Route
+          path="/quiz"
+          element={
+            <QuizGround
+              name={name}
+              questions={questions}
+              score={score}
+              setScore={setScore}
+              setQuestions={setQuestions}
+            />
+          }
+        />
         <Route path="/result" element={<Result />} />
       </Routes>
     </Container>
