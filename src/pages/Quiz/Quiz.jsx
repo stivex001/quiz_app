@@ -1,4 +1,6 @@
-import { MenuItem, TextField } from "@mui/material";
+import { Button, MenuItem, TextField } from "@mui/material";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import hero from "../../assets/hero.png";
 import Categories from "../../Data/categories";
@@ -40,16 +42,54 @@ const Forms = styled.form`
   flex: 0.8;
   gap: 50px;
 `;
+const ErrorMessage = styled.p`
+width: 100%;
+padding: 10px;
+border-radius: 4px;
+background-color: orangered;
+text-align: center;
+color: #fff;
+text-transform: capitalize;
+`;
 
-const Quiz = () => {
+const Quiz = ({ name, setName, fetchQuestions }) => {
+  const [category, setCategory] = useState("");
+  const [difficulty, setDifficulty] = useState("");
+  const [error, setError] = useState(false)
+  const navigate = useNavigate()
+
+  const handleSubmit = () => {
+    if (!category || !difficulty || !name) {
+      setError(true)
+      return;
+    }
+    else {
+      setError(false)
+      fetchQuestions(category, difficulty)
+      navigate('/quiz')
+    }
+  }
+
   return (
     <Container>
       <Settings>
         <Span>Quiz Settings</Span>
         <Forms>
-          <TextField label="Enter Your Name" variant="outlined" />
+          {error && <ErrorMessage>Please Fill all the Fields</ErrorMessage>}
+          <TextField
+            label="Enter Your Name"
+            variant="outlined"
+            onChange={(e) => setName(e.target.value)}
+            value={name}
+          />
 
-          <TextField select label="Select Category" variant="outlined">
+          <TextField
+            select
+            label="Select Category"
+            variant="outlined"
+            onChange={(e) => setCategory(e.target.value)}
+            value={category}
+          >
             {Categories.map((cat) => (
               <MenuItem key={cat.category} value={cat.value}>
                 {cat.category}
@@ -57,7 +97,13 @@ const Quiz = () => {
             ))}
           </TextField>
 
-          <TextField select label="Select Difficulty" variant="outlined">
+          <TextField
+            select
+            label="Select Difficulty"
+            variant="outlined"
+            onChange={(e) => setDifficulty(e.target.value)}
+            value={difficulty}
+          >
             <MenuItem key="Easy" value="easy">
               Easy
             </MenuItem>
@@ -68,6 +114,14 @@ const Quiz = () => {
               Hard
             </MenuItem>
           </TextField>
+          <Button
+            variant="contained"
+            style={{ backgroundColor: "#5779c4" }}
+            size="large"
+            onClick={handleSubmit}
+          >
+            Start Quiz
+          </Button>
         </Forms>
       </Settings>
       <ImgContainer>
