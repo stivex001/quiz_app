@@ -1,6 +1,7 @@
 import { CircularProgress } from "@mui/material";
 import { useEffect, useState } from "react";
 import Question from "../../components/Question/Question";
+import Timer from "../../components/Timer/Timer";
 import { Board, Container, CountDown, Info, Span } from "./quizGround.styles";
 
 const QuizGround = ({ name, questions, score, setScore }) => {
@@ -23,15 +24,27 @@ const QuizGround = ({ name, questions, score, setScore }) => {
 
   return (
     <Container>
-      <Span>Welcome, <span style={{color: '#5777ba'}}>{name}</span></Span>
+      <Span>
+        Welcome, <span style={{ color: "#5777ba" }}>{name}</span>
+      </Span>
       {questions ? (
         <>
           <Info>
             <Board>{questions[currentQuestion]?.category}</Board>
-            
-            <Board>Score :  <span style={{color: '#5777ba', fontSize: '1.3rem'}}>{score}</span></Board>
+
+            <Board>
+              Score :{" "}
+              <span style={{ color: "#5777ba", fontSize: "1.3rem" }}>
+                {score}
+              </span>
+            </Board>
           </Info>
-          <CountDown>30</CountDown>
+          <CountDown>
+            <Timer
+              setcurrentQuestion={setcurrentQuestion}
+              currentQuestion={currentQuestion}
+            />
+          </CountDown>
           <Question
             currentQuestion={currentQuestion}
             setcurrentQuestion={setcurrentQuestion}
