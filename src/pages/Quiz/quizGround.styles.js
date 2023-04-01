@@ -10,6 +10,8 @@ export const Span = styled.span`
   border: 1px solid black;
   box-shadow: 4px 4px 2px black;
   padding: 5px 10px;
+  text-transform: uppercase;
+  font-weight: bold;
 `;
 export const Info = styled.div`
   width: 100%;
@@ -21,4 +23,16 @@ export const Info = styled.div`
 export const Board = styled.span`
   color: #54575e;
   font-weight: bold;
+`;
+
+export const CountDown = styled.div`
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 5px solid #5777ba;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: 700;
 `;
