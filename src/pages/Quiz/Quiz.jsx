@@ -1,74 +1,34 @@
 import { Button, MenuItem, TextField } from "@mui/material";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import styled from "styled-components";
 import hero from "../../assets/hero.png";
 import Categories from "../../Data/categories";
-import { mobile } from "../../responsive";
-
-const Container = styled.div`
-  display: flex;
-  justify-content: space-around;
-  /* align-items: center; */
-  ${mobile({ flexDirection: "column-reverse", alignItems: "center" })}
-`;
-const Settings = styled.div`
-  padding: 10px;
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  align-items: center;
-  font-weight: 300;
-  ${mobile({ width: "100%" })}
-`;
-const Span = styled.span`
-  font-size: 30px;
-`;
-const ImgContainer = styled.div`
-  flex: 1.5;
-`;
-const Img = styled.img`
-  width: 70%;
-  align-self: center;
-  padding: 8px;
-  ${mobile({ width: "85%", padding: "20px 0 0 0 " })}
-`;
-
-const Forms = styled.form`
-  display: flex;
-  flex-direction: column;
-  padding: 20px;
-  width: 100%;
-  flex: 0.8;
-  gap: 50px;
-`;
-const ErrorMessage = styled.p`
-width: 100%;
-padding: 10px;
-border-radius: 4px;
-background-color: orangered;
-text-align: center;
-color: #fff;
-text-transform: capitalize;
-`;
+import {
+  Container,
+  ErrorMessage,
+  Forms,
+  Img,
+  ImgContainer,
+  Settings,
+  Span,
+} from "./quiz.styles";
 
 const Quiz = ({ name, setName, fetchQuestions }) => {
   const [category, setCategory] = useState("");
   const [difficulty, setDifficulty] = useState("");
-  const [error, setError] = useState(false)
-  const navigate = useNavigate()
+  const [error, setError] = useState(false);
+  const navigate = useNavigate();
 
   const handleSubmit = () => {
     if (!category || !difficulty || !name) {
-      setError(true)
+      setError(true);
       return;
+    } else {
+      setError(false);
+      fetchQuestions(category, difficulty);
+      navigate("/quiz");
     }
-    else {
-      setError(false)
-      fetchQuestions(category, difficulty)
-      navigate('/quiz')
-    }
-  }
+  };
 
   return (
     <Container>

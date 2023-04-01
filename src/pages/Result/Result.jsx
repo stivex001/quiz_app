@@ -1,20 +1,7 @@
 import { Button } from "@mui/material";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import styled from "styled-components";
-
-const Container = styled.div`
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  height: 60vh;
-  text-align: center;
-  gap: 1.8rem;
-`;
-const Title = styled.span`
-  font-weight: bold;
-  font-size: 2rem;
-`;
+import { Container, Title } from "./result.styles";
 
 const Result = ({ name, score }) => {
   const navigate = useNavigate();
