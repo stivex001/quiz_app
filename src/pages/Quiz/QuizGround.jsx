@@ -26,7 +26,7 @@ const Board = styled.span`
   font-weight: bold;
 `;
 
-const QuizGround = ({ name, questions, score, setScore, setQuestions }) => {
+const QuizGround = ({ name, questions, score, setScore }) => {
   const [options, setOptions] = useState();
   const [currentQuestion, setcurrentQuestion] = useState(0);
 
@@ -62,7 +62,6 @@ const QuizGround = ({ name, questions, score, setScore, setQuestions }) => {
             correct={questions[currentQuestion]?.correct_answer}
             score={score}
             setScore={setScore}
-            setQuestions={setQuestions}
           />
         </>
       ) : (
