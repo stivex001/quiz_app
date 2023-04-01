@@ -5,7 +5,7 @@ import styled from "styled-components";
 const Form = styled.form`
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 12px;
   max-width: 400px;
   margin: auto;
 `;
@@ -52,7 +52,7 @@ const NewQuiz = () => {
   const [option4, setOption4] = useState("");
   const [answer, setAnswer] = useState("");
 
-  
+
   const handleSubmit = (event) => {
     event.preventDefault();
     // Handle form submission
