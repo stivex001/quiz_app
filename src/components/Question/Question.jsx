@@ -71,11 +71,8 @@ const Question = ({
   return (
     <Container>
       <h1>Question {currentQuestion + 1}</h1>
-      <div>
-        <h2 className="singleQuesion">
-          {" "}
-          {questions[currentQuestion]?.question}{" "}
-        </h2>
+      <div className="singleQuestion">
+        <h2> {questions[currentQuestion]?.question} </h2>
         <div className="options">
           {error && <ErrorMessage>Plese select an option first</ErrorMessage>}
 
