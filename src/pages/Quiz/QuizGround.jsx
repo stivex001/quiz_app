@@ -35,7 +35,7 @@ const QuizGround = ({ name, questions, score, setScore }) => {
       questions &&
         shuffleHandler([
           questions[currentQuestion]?.correct_answer,
-          ...questions[currentQuestion]?.incorrect_answers,
+          ...(questions[currentQuestion]?.incorrect_answers || [])
         ])
     );
   }, [questions, currentQuestion]);

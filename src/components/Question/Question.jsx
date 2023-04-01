@@ -58,7 +58,7 @@ const Question = ({
   };
 
   const handleNext = () => {
-    if (currentQuestion > 10) {
+    if (currentQuestion > 8) {
       navigate("/result");
     } else if (selected) {
       setcurrentQuestion(currentQuestion + 1);
