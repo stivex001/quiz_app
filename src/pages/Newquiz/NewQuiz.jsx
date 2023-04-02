@@ -99,7 +99,7 @@ const NewQuiz = () => {
         type="text"
         value={points}
         onChange={(event) => setPoints(event.target.value)}
-        required
+        placeholder="1"
       />
 
       <Label htmlFor="time-limit">Time Limit</Label>
@@ -108,7 +108,7 @@ const NewQuiz = () => {
         type="text"
         value={timeLimit}
         onChange={(event) => setTimeLimit(event.target.value)}
-        required
+        placeholder='30'
       />
 
       <Button type="submit">Create Quiz</Button>

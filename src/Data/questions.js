@@ -4,12 +4,14 @@ const quizData = [
     question: "What is the capital of France?",
     options: ["London", "Paris", "New York", "Tokyo"],
     answer: "Paris",
+    category: 'General Knowledge'
   },
   {
     id: 2,
     question: "What is the currency of Japan?",
     options: ["Dollar", "Pound", "Yen", "Euro"],
     answer: "Yen",
+    category: 'General Knowledge'
   },
   {
     id: 3,
@@ -21,6 +23,7 @@ const quizData = [
       "Nikola Tesla",
     ],
     answer: "Alexander Graham Bell",
+    category: 'General Knowledge'
   },
 ];
 
