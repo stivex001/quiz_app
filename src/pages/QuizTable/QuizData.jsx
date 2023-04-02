@@ -67,6 +67,7 @@ const QuizData = () => {
 
   const handleEdit = (id) => {
     // Implement edit functionality here
+    alert('Are You sure you want to delete this item?');
     console.log(`Edit ${id}`);
   };
 
