@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { quizData } from "../../Data/questions";
 
@@ -22,7 +23,31 @@ const Table = styled.table`
 `;
 
 const QuizData = () => {
-  const [data, setData] = useState(quizData);
+  const [quiz, setQuiz] = useState([]);
+
+  useEffect(() => {
+    const getQuiz = async () => {
+      const res = await axios.get(
+        "https://quiz-app-c5011-default-rtdb.firebaseio.com/quizes.json"
+      );
+      const resData = await res.data;
+
+      const loadedQuiz = [];
+
+      for (const key in resData) {
+        loadedQuiz.push({
+          id: key,
+          category: resData[key].category,
+          question: resData[key].question,
+          options: resData[key].options,
+          answer: resData[key].answer,
+        });
+      }
+
+      setQuiz(loadedQuiz);
+    };
+    getQuiz();
+  }, []);
 
   const handleDelete = (id) => {
     setData(data.filter((item) => item.id !== id));
@@ -45,7 +70,7 @@ const QuizData = () => {
         </tr>
       </thead>
       <tbody>
-        {data.map((item) => (
+        {quiz.map((item) => (
           <tr key={item.id}>
             <td>{item.question}</td>
             <td>{item.options.join(", ")}</td>
