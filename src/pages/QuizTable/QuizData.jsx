@@ -1,3 +1,4 @@
+import { CircularProgress } from "@mui/material";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
@@ -24,6 +25,7 @@ const Table = styled.table`
 
 const QuizData = () => {
   const [quiz, setQuiz] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const getQuiz = async () => {
@@ -45,6 +47,7 @@ const QuizData = () => {
       }
 
       setQuiz(loadedQuiz);
+      setIsLoading(false);
     };
     getQuiz();
   }, []);
@@ -57,6 +60,17 @@ const QuizData = () => {
     // Implement edit functionality here
     console.log(`Edit ${id}`);
   };
+
+  if (isLoading) {
+    return (
+      <CircularProgress
+        style={{ margin: 100 }}
+        color="inherit"
+        size={150}
+        thickness={1}
+      />
+    );
+  }
 
   return (
     <Table>
