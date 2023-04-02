@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Button, Form, Input, Label } from "./newQuz.styles";
 
 const NewQuiz = () => {
@@ -12,6 +13,8 @@ const NewQuiz = () => {
   const [option3, setOption3] = useState("");
   const [option4, setOption4] = useState("");
   const [answer, setAnswer] = useState("");
+
+  const navigate = useNavigate()
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -36,6 +39,8 @@ const NewQuiz = () => {
     setOption3("");
     setOption4("");
     setAnswer("");
+
+    navigate('/quiz-data')
   };
 
   return (

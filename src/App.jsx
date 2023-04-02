@@ -7,6 +7,7 @@ import Home from "./pages/Home";
 import NewQuiz from "./pages/Newquiz/NewQuiz";
 import Quiz from "./pages/Quiz/Quiz";
 import QuizGround from "./pages/Quiz/QuizGround";
+import QuizData from "./pages/QuizTable/QuizData";
 import Result from "./pages/Result/Result";
 
 const Container = styled.div`
@@ -49,6 +50,7 @@ function App() {
           }
         />
         <Route path="/new-quiz" element={<NewQuiz />} />
+        <Route path="/quiz-data" element={<QuizData />} />
         <Route
           path="/quiz"
           element={
