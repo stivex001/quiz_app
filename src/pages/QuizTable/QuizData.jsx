@@ -26,12 +26,17 @@ const Table = styled.table`
 const QuizData = () => {
   const [quiz, setQuiz] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState();
 
   useEffect(() => {
     const getQuiz = async () => {
       const res = await axios.get(
         "https://quiz-app-c5011-default-rtdb.firebaseio.com/quizes.json"
       );
+
+      if (res.statusText !== "OK") {
+        throw new Error("Something went wrong");
+      }
       const resData = await res.data;
 
       const loadedQuiz = [];
@@ -49,7 +54,11 @@ const QuizData = () => {
       setQuiz(loadedQuiz);
       setIsLoading(false);
     };
-    getQuiz();
+
+    getQuiz().catch((error) => {
+      setIsLoading(false);
+      setError(error.message);
+    });
   }, []);
 
   const handleDelete = (id) => {
@@ -69,6 +78,14 @@ const QuizData = () => {
         size={150}
         thickness={1}
       />
+    );
+  }
+
+  if (error) {
+    return (
+      <>
+        <p>{error}</p>
+      </>
     );
   }
 
