@@ -52,7 +52,7 @@ const QuizData = ({ questions, isLoading, error }) => {
       </>
     );
   }
-  console.log( questions);
+  
   return (
     <div>
       <Table>

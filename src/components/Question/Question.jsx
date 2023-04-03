@@ -28,7 +28,6 @@ const Question = ({
   correct,
   score,
   setScore,
-  setQuestions,
 }) => {
   const [selected, setselected] = useState();
   const [error, setError] = useState(false);
@@ -58,7 +57,7 @@ const Question = ({
   };
 
   const handleNext = () => {
-    if (currentQuestion > 8) {
+    if (currentQuestion > questions.length - 1) {
       navigate("/result");
     } else if (selected) {
       setcurrentQuestion(currentQuestion + 1);

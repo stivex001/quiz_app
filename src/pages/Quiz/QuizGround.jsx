@@ -30,7 +30,7 @@ const QuizGround = ({ name, questions, score, setScore }) => {
       {questions ? (
         <>
           <Info>
-            <Board>{questions[currentQuestion]?.quizName}</Board>
+            <Board>{questions[currentQuestion]?.category}</Board>
 
             <Board>
               Score :{" "}

@@ -13,7 +13,7 @@ import {
   Span,
 } from "./quiz.styles";
 
-const Quiz = ({ name, setName, fetchQuestions }) => {
+const Quiz = ({ name, setName, questions }) => {
   // const [category, setCategory] = useState("");
   // const [difficulty, setDifficulty] = useState("");
   const [error, setError] = useState(false);
@@ -25,7 +25,6 @@ const Quiz = ({ name, setName, fetchQuestions }) => {
       return;
     } else {
       setError(false);
-      fetchQuestions();
       navigate("/quiz");
     }
   };
