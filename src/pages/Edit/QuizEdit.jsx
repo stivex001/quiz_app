@@ -28,26 +28,26 @@ const QuizEdit = ({ questions }) => {
       question,
       options: [option1, option2, option3],
       answer,
-      points,
-      timeLimit,
     };
 
-    if (quizData === quizData) {
+    if (quizData === '') {
       toast.error("You did not make any changes");
+    } else {
+      const firebaseEndpoint = `https://quiz-app-c5011-default-rtdb.firebaseio.com/quizes/${Id}.json`;
+
+      axios
+        .put(firebaseEndpoint, quizData)
+        .then((response) => console.log(response))
+        .catch((error) => console.log(error));
+
+      setQuestion("");
+      setOption1("");
+      setOption2("");
+      setOption3("");
+      setAnswer("");
+      toast.success("Changes Made Successfully!!");
+      setTimeout(() => navigate("/quiz-data"), 5000);
     }
-
-    axios
-      .post("<firebase-backend-url>", quizData)
-      .then((response) => console.log(response))
-      .catch((error) => console.log(error));
-
-    setQuestion("");
-    setOption1("");
-    setOption2("");
-    setOption3("");
-    setAnswer("");
-    toast.success("Changes Made Successfully!!");
-    setTimeout(() => navigate("/quiz-data"), 2000);
   };
 
   return (
@@ -117,7 +117,7 @@ const QuizEdit = ({ questions }) => {
         placeholder="30"
       />
 
-      <Button type="submit">Create Quiz</Button>
+      <Button type="submit">Submit</Button>
     </Form>
   );
 };

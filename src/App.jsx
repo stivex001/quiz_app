@@ -80,7 +80,7 @@ function App() {
       setIsLoading(false);
       setError(error.message);
     });
-  }, []);
+  }, [setQuestions]);
 
   // console.log(questions.id);
 
