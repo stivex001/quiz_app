@@ -25,6 +25,8 @@ const NewQuiz = () => {
       question,
       options: [option1, option2, option3],
       answer,
+      points,
+      timeLimit
     };
 
     axios
@@ -40,6 +42,8 @@ const NewQuiz = () => {
     setOption2("");
     setOption3("");
     setAnswer("");
+    setTimeLimit("");
+    setPoints("");
     toast.success("Quiz Created Successfully!!");
     setTimeout(() => navigate("/quiz-data"), 5000);
   };
@@ -109,7 +113,7 @@ const NewQuiz = () => {
         type="text"
         value={timeLimit}
         onChange={(event) => setTimeLimit(event.target.value)}
-        placeholder="30"
+        placeholder="e.g 30, 60 "
       />
 
       <Button type="submit">Create Quiz</Button>

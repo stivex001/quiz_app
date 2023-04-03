@@ -62,6 +62,7 @@ const QuizGround = ({ name, questions, score, setScore, isLoading, error }) => {
             <Timer
               setcurrentQuestion={setcurrentQuestion}
               currentQuestion={currentQuestion}
+              questions={questions}
             />
           </CountDown>
           <Question

@@ -48,6 +48,7 @@ const Question = ({
     setselected(i);
     if (i === correct) {
       setScore(score + 1);
+      // setTimeout(() => setcurrentQuestion(currentQuestion + 1), 10000);
     }
     setError(false);
   };

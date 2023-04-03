@@ -69,6 +69,8 @@ function App() {
           question: resData[key].question,
           options: resData[key].options,
           answer: resData[key].answer,
+          points: resData[key].points,
+          time: resData[key].timeLimit
         });
       }
 
