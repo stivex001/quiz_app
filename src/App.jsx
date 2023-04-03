@@ -113,6 +113,8 @@ function App() {
               score={score}
               setScore={setScore}
               setQuestions={setQuestions}
+              isLoading={isLoading}
+              error={error}
             />
           }
         />

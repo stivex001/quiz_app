@@ -4,7 +4,7 @@ import Question from "../../components/Question/Question";
 import Timer from "../../components/Timer/Timer";
 import { Board, Container, CountDown, Info, Span } from "./quizGround.styles";
 
-const QuizGround = ({ name, questions, score, setScore }) => {
+const QuizGround = ({ name, questions, score, setScore, isLoading, error }) => {
   const [options, setOptions] = useState([]);
   const [currentQuestion, setcurrentQuestion] = useState(0);
 
@@ -21,6 +21,25 @@ const QuizGround = ({ name, questions, score, setScore }) => {
   const shuffleHandler = (option) => {
     return option.sort(() => Math.random() - 0.5);
   };
+
+  if (isLoading) {
+    return (
+      <CircularProgress
+        style={{ margin: 100 }}
+        color="inherit"
+        size={150}
+        thickness={1}
+      />
+    );
+  }
+
+  if (error) {
+    return (
+      <>
+        <p>{error}</p>
+      </>
+    );
+  }
 
   return (
     <Container>

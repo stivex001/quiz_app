@@ -2,7 +2,7 @@ import { Button, MenuItem, TextField } from "@mui/material";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import hero from "../../assets/hero.png";
-import Categories from "../../Data/categories";
+// import Categories from "../../Data/categories";
 import {
   Container,
   ErrorMessage,
@@ -42,7 +42,7 @@ const Quiz = ({ name, setName, questions }) => {
             value={name}
           />
 
-          <TextField
+          {/* <TextField
             select
             label="Select Category"
             variant="outlined"
@@ -72,7 +72,7 @@ const Quiz = ({ name, setName, questions }) => {
             <MenuItem key="Hard" value="hard">
               Hard
             </MenuItem>
-          </TextField>
+          </TextField> */}
           <Button
             variant="contained"
             style={{ backgroundColor: "#5779c4" }}
