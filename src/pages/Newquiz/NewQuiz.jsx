@@ -31,10 +31,6 @@ const NewQuiz = () => {
       .then((response) => console.log(response))
       .catch((error) => console.log(error));
 
-      if (response.statusText === 'OK') {
-        navigate('/quiz-data')
-      }
-
     setQuestion("");
     setOption1("");
     setOption2("");
@@ -42,7 +38,7 @@ const NewQuiz = () => {
     setOption4("");
     setAnswer("");
 
-    
+    navigate('/quiz-data')
   };
 
   return (

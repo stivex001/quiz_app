@@ -33,7 +33,7 @@ const QuizData = () => {
       const res = await axios.get(
         "https://quiz-app-c5011-default-rtdb.firebaseio.com/quizes.json"
       );
-console.log(res);
+
       if (res.statusText !== "OK") {
         throw new Error("Something went wrong");
       }
@@ -67,7 +67,7 @@ console.log(res);
 
   const handleEdit = (id) => {
     // Implement edit functionality here
-    alert('Are You sure you want to delete this item?');
+    alert("Are You sure you want to delete this item?");
     console.log(`Edit ${id}`);
   };
 
@@ -115,6 +115,9 @@ console.log(res);
           </tr>
         ))}
       </tbody>
+
+      <button>Hompage</button>
+      <button>Add More</button>
     </Table>
   );
 };
