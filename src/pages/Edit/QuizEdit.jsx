@@ -1,6 +1,8 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { Button, Form, Input, Label } from "../Newquiz/newQuz.styles";
 
 const QuizEdit = ({ questions }) => {
@@ -30,6 +32,10 @@ const QuizEdit = ({ questions }) => {
       timeLimit,
     };
 
+    if (quizData === quizData) {
+      toast.error("You did not make any changes");
+    }
+
     axios
       .post("<firebase-backend-url>", quizData)
       .then((response) => console.log(response))
@@ -39,14 +45,14 @@ const QuizEdit = ({ questions }) => {
     setOption1("");
     setOption2("");
     setOption3("");
-    setOption4("");
     setAnswer("");
-
-    navigate("/quiz-data");
+    toast.success("Changes Made Successfully!!");
+    setTimeout(() => navigate("/quiz-data"), 2000);
   };
 
   return (
     <Form onSubmit={handleSubmit}>
+      <ToastContainer />
       <Label htmlFor="quiz-name">Quiz Name</Label>
       <Input
         id="quiz-name"

@@ -1,6 +1,8 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { Button, Form, Input, Label } from "./newQuz.styles";
 
 const NewQuiz = () => {
@@ -38,15 +40,17 @@ const NewQuiz = () => {
     setOption2("");
     setOption3("");
     setAnswer("");
-
-    navigate("/quiz-data");
+    toast.success("Quiz Created Successfully!!");
+    setTimeout(() => navigate("/quiz-data"), 5000);
   };
 
   return (
     <Form onSubmit={handleSubmit}>
+      <ToastContainer />
       <Label htmlFor="quiz-name">Quiz Name</Label>
       <Input
         id="quiz-name"
+        placeholder=" Sport, Politics, General Knowledge etc"
         type="text"
         value={quizName}
         onChange={(event) => setQuizName(event.target.value)}
