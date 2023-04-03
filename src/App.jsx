@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import styled from "styled-components";
 import Header from "./components/Header/Header";
+import QuizEdit from "./pages/Edit/QuizEdit";
 import Home from "./pages/Home";
 import NewQuiz from "./pages/Newquiz/NewQuiz";
 import Quiz from "./pages/Quiz/Quiz";
@@ -64,6 +65,7 @@ function App() {
           }
         />
         <Route path="/result" element={<Result score={score} name={name} />} />
+        <Route path="/edit/:Id" element={<QuizEdit />} />
       </Routes>
     </Container>
   );
