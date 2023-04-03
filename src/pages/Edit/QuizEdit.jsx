@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Button, Form, Input, Label } from "../Newquiz/newQuz.styles";
 
 const QuizEdit = () => {
@@ -11,10 +11,12 @@ const QuizEdit = () => {
   const [option1, setOption1] = useState("");
   const [option2, setOption2] = useState("");
   const [option3, setOption3] = useState("");
-  const [option4, setOption4] = useState("");
   const [answer, setAnswer] = useState("");
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const { Id } = useParams();
+
+//   console.log(typeof(Id));
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -22,7 +24,7 @@ const QuizEdit = () => {
     const quizData = {
       quizName,
       question,
-      options: [option1, option2, option3, option4],
+      options: [option1, option2, option3],
       answer,
       points,
       timeLimit,
@@ -40,7 +42,7 @@ const QuizEdit = () => {
     setOption4("");
     setAnswer("");
 
-    navigate('/quiz-data')
+    navigate("/quiz-data");
   };
 
   return (
@@ -85,13 +87,6 @@ const QuizEdit = () => {
       />
       <Input
         type="text"
-        placeholder="Option 4"
-        value={option4}
-        onChange={(event) => setOption4(event.target.value)}
-        required
-      />
-      <Input
-        type="text"
         placeholder="Answer"
         value={answer}
         onChange={(event) => setAnswer(event.target.value)}
@@ -113,7 +108,7 @@ const QuizEdit = () => {
         type="text"
         value={timeLimit}
         onChange={(event) => setTimeLimit(event.target.value)}
-        placeholder='30'
+        placeholder="30"
       />
 
       <Button type="submit">Create Quiz</Button>

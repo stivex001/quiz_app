@@ -32,7 +32,7 @@ const Question = ({
 }) => {
   const [selected, setselected] = useState();
   const [error, setError] = useState(false);
-console.log(questions);
+
   const navigate = useNavigate();
 
   const handleSelect = (option) => {

@@ -1,6 +1,7 @@
 import { CircularProgress } from "@mui/material";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
 import styled from "styled-components";
 import { quizData } from "../../Data/questions";
 
@@ -68,6 +69,7 @@ const QuizData = () => {
   const handleEdit = (id) => {
     // Implement edit functionality here
     alert("Are You sure you want to delete this item?");
+
     console.log(`Edit ${id}`);
   };
 
@@ -109,7 +111,7 @@ const QuizData = () => {
             <td>{item.answer}</td>
             <td>{item.category}</td>
             <td>
-              <button onClick={() => handleEdit(item.id)}>Edit</button>
+              <Link to={`/edit/${item.id}`}>Edit</Link>
               <button onClick={() => handleDelete(item.id)}>Delete</button>
             </td>
           </tr>
