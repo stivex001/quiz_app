@@ -24,14 +24,16 @@ const NewQuiz = () => {
       question,
       options: [option1, option2, option3, option4],
       answer,
-      points,
-      timeLimit,
     };
 
     axios
-      .post("<firebase-backend-url>", quizData)
+      .post( "https://quiz-app-c5011-default-rtdb.firebaseio.com/quizes.json", quizData)
       .then((response) => console.log(response))
       .catch((error) => console.log(error));
+
+      if (response.statusText === 'OK') {
+        navigate('/quiz-data')
+      }
 
     setQuestion("");
     setOption1("");
@@ -40,7 +42,7 @@ const NewQuiz = () => {
     setOption4("");
     setAnswer("");
 
-    navigate('/quiz-data')
+    
   };
 
   return (

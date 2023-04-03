@@ -33,7 +33,7 @@ const QuizData = () => {
       const res = await axios.get(
         "https://quiz-app-c5011-default-rtdb.firebaseio.com/quizes.json"
       );
-
+console.log(res);
       if (res.statusText !== "OK") {
         throw new Error("Something went wrong");
       }
@@ -44,7 +44,7 @@ const QuizData = () => {
       for (const key in resData) {
         loadedQuiz.push({
           id: key,
-          category: resData[key].category,
+          category: resData[key].quizName,
           question: resData[key].question,
           options: resData[key].options,
           answer: resData[key].answer,
