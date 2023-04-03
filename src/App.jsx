@@ -23,18 +23,30 @@ const Container = styled.div`
 
 function App() {
   const [name, setName] = useState("");
-  const [questions, setQuestions] = useState();
+  const [questions, setQuestions] = useState([]);
   const [score, setScore] = useState(0);
 
-  const fetchQuestions = async (category = "", difficulty = "") => {
+  const fetchQuestions = async () => {
     const res = await axios.get(
-      `https://opentdb.com/api.php?amount=10${
-        category && `&category=${category}`
-      }${difficulty && `&difficulty=${difficulty}`}&type=multiple`
+      `https://quiz-app-c5011-default-rtdb.firebaseio.com/quizes.json`
     );
-    setQuestions(res.data.results);
-  };
 
+    const loadedQuiz = [];
+    const resData = await res.data;
+
+    for (const key in resData) {
+      loadedQuiz.push({
+        id: key,
+        category: resData[key].quizName,
+        question: resData[key].question,
+        options: resData[key].options,
+        answer: resData[key].answer,
+      });
+    }
+
+    setQuestions(loadedQuiz);
+  };
+  console.log(questions);
   return (
     <Container>
       <Header />

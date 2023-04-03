@@ -14,18 +14,18 @@ import {
 } from "./quiz.styles";
 
 const Quiz = ({ name, setName, fetchQuestions }) => {
-  const [category, setCategory] = useState("");
-  const [difficulty, setDifficulty] = useState("");
+  // const [category, setCategory] = useState("");
+  // const [difficulty, setDifficulty] = useState("");
   const [error, setError] = useState(false);
   const navigate = useNavigate();
 
   const handleSubmit = () => {
-    if (!category || !difficulty || !name) {
+    if ( !name) {
       setError(true);
       return;
     } else {
       setError(false);
-      fetchQuestions(category, difficulty);
+      fetchQuestions();
       navigate("/quiz");
     }
   };
@@ -48,7 +48,7 @@ const Quiz = ({ name, setName, fetchQuestions }) => {
             label="Select Category"
             variant="outlined"
             onChange={(e) => setCategory(e.target.value)}
-            value={category}
+            
           >
             {Categories.map((cat) => (
               <MenuItem key={cat.category} value={cat.value}>
@@ -62,7 +62,7 @@ const Quiz = ({ name, setName, fetchQuestions }) => {
             label="Select Difficulty"
             variant="outlined"
             onChange={(e) => setDifficulty(e.target.value)}
-            value={difficulty}
+           
           >
             <MenuItem key="Easy" value="easy">
               Easy

@@ -11,10 +11,9 @@ const NewQuiz = () => {
   const [option1, setOption1] = useState("");
   const [option2, setOption2] = useState("");
   const [option3, setOption3] = useState("");
-  const [option4, setOption4] = useState("");
   const [answer, setAnswer] = useState("");
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -22,12 +21,15 @@ const NewQuiz = () => {
     const quizData = {
       quizName,
       question,
-      options: [option1, option2, option3, option4],
+      options: [option1, option2, option3],
       answer,
     };
 
     axios
-      .post( "https://quiz-app-c5011-default-rtdb.firebaseio.com/quizes.json", quizData)
+      .post(
+        "https://quiz-app-c5011-default-rtdb.firebaseio.com/quizes.json",
+        quizData
+      )
       .then((response) => console.log(response))
       .catch((error) => console.log(error));
 
@@ -35,10 +37,9 @@ const NewQuiz = () => {
     setOption1("");
     setOption2("");
     setOption3("");
-    setOption4("");
     setAnswer("");
 
-    navigate('/quiz-data')
+    navigate("/quiz-data");
   };
 
   return (
@@ -83,13 +84,6 @@ const NewQuiz = () => {
       />
       <Input
         type="text"
-        placeholder="Option 4"
-        value={option4}
-        onChange={(event) => setOption4(event.target.value)}
-        required
-      />
-      <Input
-        type="text"
         placeholder="Answer"
         value={answer}
         onChange={(event) => setAnswer(event.target.value)}
@@ -111,7 +105,7 @@ const NewQuiz = () => {
         type="text"
         value={timeLimit}
         onChange={(event) => setTimeLimit(event.target.value)}
-        placeholder='30'
+        placeholder="30"
       />
 
       <Button type="submit">Create Quiz</Button>

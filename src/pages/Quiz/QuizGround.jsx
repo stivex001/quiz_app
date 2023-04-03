@@ -5,15 +5,15 @@ import Timer from "../../components/Timer/Timer";
 import { Board, Container, CountDown, Info, Span } from "./quizGround.styles";
 
 const QuizGround = ({ name, questions, score, setScore }) => {
-  const [options, setOptions] = useState();
+  const [options, setOptions] = useState([]);
   const [currentQuestion, setcurrentQuestion] = useState(0);
 
   useEffect(() => {
     setOptions(
       questions &&
         shuffleHandler([
-          questions[currentQuestion]?.correct_answer,
-          ...(questions[currentQuestion]?.incorrect_answers || []),
+          questions[currentQuestion]?.answer,
+          ...(questions[currentQuestion]?.options || []),
         ])
     );
   }, [questions, currentQuestion]);
@@ -30,7 +30,7 @@ const QuizGround = ({ name, questions, score, setScore }) => {
       {questions ? (
         <>
           <Info>
-            <Board>{questions[currentQuestion]?.category}</Board>
+            <Board>{questions[currentQuestion]?.quizName}</Board>
 
             <Board>
               Score :{" "}
@@ -50,7 +50,7 @@ const QuizGround = ({ name, questions, score, setScore }) => {
             setcurrentQuestion={setcurrentQuestion}
             questions={questions}
             options={options}
-            correct={questions[currentQuestion]?.correct_answer}
+            correct={questions[currentQuestion]?.answer}
             score={score}
             setScore={setScore}
           />
