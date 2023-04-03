@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import styled from "styled-components";
 import Header from "./components/Header/Header";
@@ -25,28 +25,65 @@ function App() {
   const [name, setName] = useState("");
   const [questions, setQuestions] = useState([]);
   const [score, setScore] = useState(0);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState();
 
-  const fetchQuestions = async () => {
-    const res = await axios.get(
-      `https://quiz-app-c5011-default-rtdb.firebaseio.com/quizes.json`
-    );
+  // const fetchQuestions = async () => {
+  //   const res = await axios.get(
+  //     `https://quiz-app-c5011-default-rtdb.firebaseio.com/quizes.json`
+  //   );
 
-    const loadedQuiz = [];
-    const resData = await res.data;
+  //   const loadedQuiz = [];
+  //   const resData = await res.data;
 
-    for (const key in resData) {
-      loadedQuiz.push({
-        id: key,
-        category: resData[key].quizName,
-        question: resData[key].question,
-        options: resData[key].options,
-        answer: resData[key].answer,
-      });
-    }
+  //   for (const key in resData) {
+  //     loadedQuiz.push({
+  //       id: key,
+  //       category: resData[key].quizName,
+  //       question: resData[key].question,
+  //       options: resData[key].options,
+  //       answer: resData[key].answer,
+  //     });
+  //   }
 
-    setQuestions(loadedQuiz);
-  };
-  console.log(questions);
+  //   setQuestions(loadedQuiz);
+  // };
+
+  useEffect(() => {
+    const getQuiz = async () => {
+      const res = await axios.get(
+        "https://quiz-app-c5011-default-rtdb.firebaseio.com/quizes.json"
+      );
+
+      if (res.statusText !== "OK") {
+        throw new Error("Something went wrong");
+      }
+      const resData = await res.data;
+
+      const loadedQuiz = [];
+
+      for (const key in resData) {
+        loadedQuiz.push({
+          id: key,
+          category: resData[key].quizName,
+          question: resData[key].question,
+          options: resData[key].options,
+          answer: resData[key].answer,
+        });
+      }
+
+      setQuestions(loadedQuiz);
+      setIsLoading(false);
+    };
+
+    getQuiz().catch((error) => {
+      setIsLoading(false);
+      setError(error.message);
+    });
+  }, []);
+
+  // console.log(questions.id);
+
   return (
     <Container>
       <Header />
@@ -54,16 +91,19 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route
           path="/demo-quiz"
+          element={<Quiz name={name} setName={setName} questions={questions} />}
+        />
+        <Route path="/new-quiz" element={<NewQuiz />} />
+        <Route
+          path="/quiz-data"
           element={
-            <Quiz
-              name={name}
-              setName={setName}
-              fetchQuestions={fetchQuestions}
+            <QuizData
+              questions={questions}
+              isLoading={isLoading}
+              error={error}
             />
           }
         />
-        <Route path="/new-quiz" element={<NewQuiz />} />
-        <Route path="/quiz-data" element={<QuizData />} />
         <Route
           path="/quiz"
           element={
@@ -77,7 +117,7 @@ function App() {
           }
         />
         <Route path="/result" element={<Result score={score} name={name} />} />
-        <Route path="/edit/:Id" element={<QuizEdit />} />
+        <Route path="/edit/:Id" element={<QuizEdit questions={questions} />} />
       </Routes>
     </Container>
   );

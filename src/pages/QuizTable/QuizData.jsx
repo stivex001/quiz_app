@@ -1,9 +1,7 @@
 import { CircularProgress } from "@mui/material";
 import axios from "axios";
-import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { quizData } from "../../Data/questions";
 
 const Table = styled.table`
   border-collapse: collapse;
@@ -24,44 +22,7 @@ const Table = styled.table`
   }
 `;
 
-const QuizData = () => {
-  const [quiz, setQuiz] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState();
-
-  useEffect(() => {
-    const getQuiz = async () => {
-      const res = await axios.get(
-        "https://quiz-app-c5011-default-rtdb.firebaseio.com/quizes.json"
-      );
-
-      if (res.statusText !== "OK") {
-        throw new Error("Something went wrong");
-      }
-      const resData = await res.data;
-
-      const loadedQuiz = [];
-
-      for (const key in resData) {
-        loadedQuiz.push({
-          id: key,
-          category: resData[key].quizName,
-          question: resData[key].question,
-          options: resData[key].options,
-          answer: resData[key].answer,
-        });
-      }
-
-      setQuiz(loadedQuiz);
-      setIsLoading(false);
-    };
-
-    getQuiz().catch((error) => {
-      setIsLoading(false);
-      setError(error.message);
-    });
-  }, []);
-
+const QuizData = ({ questions, isLoading, error }) => {
   const handleDelete = (id) => {
     setData(data.filter((item) => item.id !== id));
   };
@@ -91,36 +52,37 @@ const QuizData = () => {
       </>
     );
   }
-
+  console.log( questions);
   return (
-    <Table>
-      <thead>
-        <tr>
-          <th>Question</th>
-          <th>Options</th>
-          <th>Answer</th>
-          <th>Category</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        {quiz.map((item) => (
-          <tr key={item.id}>
-            <td>{item.question}</td>
-            <td>{item.options.join(", ")}</td>
-            <td>{item.answer}</td>
-            <td>{item.category}</td>
-            <td>
-              <Link to={`/edit/${item.id}`}>Edit</Link>
-              <button onClick={() => handleDelete(item.id)}>Delete</button>
-            </td>
+    <div>
+      <Table>
+        <thead>
+          <tr>
+            <th>Question</th>
+            <th>Options</th>
+            <th>Answer</th>
+            <th>Category</th>
+            <th>Actions</th>
           </tr>
-        ))}
-      </tbody>
-
+        </thead>
+        <tbody>
+          {questions?.map((item) => (
+            <tr key={item.id}>
+              <td>{item.question}</td>
+              <td>{item.options.join(", ")}</td>
+              <td>{item.answer}</td>
+              <td>{item.category}</td>
+              <td>
+                <Link to={`/edit/${item.id}`}>Edit</Link>
+                <button onClick={() => handleDelete(item.id)}>Delete</button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </Table>
       <button>Hompage</button>
       <button>Add More</button>
-    </Table>
+    </div>
   );
 };
 

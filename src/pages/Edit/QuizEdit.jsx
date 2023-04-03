@@ -3,20 +3,20 @@ import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Button, Form, Input, Label } from "../Newquiz/newQuz.styles";
 
-const QuizEdit = () => {
-  const [quizName, setQuizName] = useState("");
-  const [points, setPoints] = useState("");
-  const [timeLimit, setTimeLimit] = useState("");
-  const [question, setQuestion] = useState("");
-  const [option1, setOption1] = useState("");
-  const [option2, setOption2] = useState("");
-  const [option3, setOption3] = useState("");
-  const [answer, setAnswer] = useState("");
-
+const QuizEdit = ({ questions }) => {
   const navigate = useNavigate();
   const { Id } = useParams();
 
-//   console.log(typeof(Id));
+  const editQUiz = questions?.find((question) => question?.id === Id);
+
+  const [quizName, setQuizName] = useState(editQUiz?.category);
+  const [points, setPoints] = useState("");
+  const [timeLimit, setTimeLimit] = useState("");
+  const [question, setQuestion] = useState(editQUiz?.question);
+  const [option1, setOption1] = useState(editQUiz?.options[0]);
+  const [option2, setOption2] = useState(editQUiz?.options[1]);
+  const [option3, setOption3] = useState(editQUiz?.options[2]);
+  const [answer, setAnswer] = useState(editQUiz?.answer);
 
   const handleSubmit = (event) => {
     event.preventDefault();
