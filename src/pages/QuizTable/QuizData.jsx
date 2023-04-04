@@ -1,6 +1,8 @@
 import { CircularProgress } from "@mui/material";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Link, useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 import styled from "styled-components";
 
 const Table = styled.table`
@@ -23,15 +25,28 @@ const Table = styled.table`
 `;
 
 const QuizData = ({ questions, isLoading, error }) => {
+  const { Id } = useParams();
+
+  const editQUiz = questions?.find((question) => question?.id === Id);
+  const [data, setData] = useState();
+
+  const firebaseEndpoint = `https://quiz-app-c5011-default-rtdb.firebaseio.com/quizes/${Id}.json`;
+  const confirmed = window.confirm(
+    "Are you sure you want to delete this item?"
+  );
+
   const handleDelete = (id) => {
-    setData(data.filter((item) => item.id !== id));
-  };
+    if (confirmed) {
+      axios
+        .delete(firebaseEndpoint)
+        .then((response) => {
+          setData(data.filter((item) => item.id !== id));
+          toast.success("Quiz deleted successfully");
+          // setTimeout(() => navigate("/quiz-data"), 5000);
+        })
 
-  const handleEdit = (id) => {
-    // Implement edit functionality here
-    alert("Are You sure you want to delete this item?");
-
-    console.log(`Edit ${id}`);
+        .catch((error) => console.log(error));
+    }
   };
 
   if (isLoading) {
@@ -52,7 +67,7 @@ const QuizData = ({ questions, isLoading, error }) => {
       </>
     );
   }
-  
+
   return (
     <div>
       <Table>
