@@ -1,4 +1,5 @@
 import {
+  Button,
   CircularProgress,
   Paper,
   Table,
@@ -14,54 +15,7 @@ import { useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import styled from "styled-components";
-
-// const Table = styled.table`
-//   border-collapse: collapse;
-//   width: 100%;
-//   max-width: 800px;
-//   margin: 0 auto;
-//   th,
-//   td {
-//     padding: 0.5rem;
-//     text-align: left;
-//     border: 1px solid #ccc;
-//   }
-//   th {
-//     background-color: #f2f2f2;
-//   }
-//   td button {
-//     margin-right: 0.5rem;
-//   }
-// `;
-
-const ActionWrapper = styled.div`
-display: flex;
-flex-direction: column;
-align-items: center;
-gap: 16px;
-`;
-const EditLink = styled(Link)`
-background-color: #5777ba;
-color: #fff;
-padding: 6px 10px;
-border-radius: 5px;
-
-&:hover {
-  background-color: #4c7bdf;
-}
-`;
-const Button = styled.button`
-background-color: #a83535;
-border: none;
-padding: 6px 10px;
-border-radius: 5px;
-cursor: pointer;
-color: #decaca;
-
-&:hover {
-  background-color: #9c2444;
-}
-`;
+import { ActionWrapper, Btn, BtnWrapper, EditLink } from "./quizData.styles";
 
 const QuizData = ({ questions, isLoading, error }) => {
   const { Id } = useParams();
@@ -143,10 +97,13 @@ const QuizData = ({ questions, isLoading, error }) => {
           <TableBody>
             {questions &&
               questions.map((row) => (
-                <TableRow key={row.id} style={{
-                  backgroundColor: row.id % 2 === 0 ? "#ffffff" : "#f3f2f7",
-                }}>
-                  <TableCell style={{ color: "#7775ef", fontWeight: "bold"}}>
+                <TableRow
+                  key={row.id}
+                  style={{
+                    backgroundColor: row.id % 2 === 0 ? "#ffffff" : "#f3f2f7",
+                  }}
+                >
+                  <TableCell style={{ color: "#7775ef", fontWeight: "bold" }}>
                     {" "}
                     {row.question}{" "}
                   </TableCell>
@@ -162,9 +119,7 @@ const QuizData = ({ questions, isLoading, error }) => {
                   <TableCell style={{ color: "#8887a9" }}>
                     <ActionWrapper>
                       <EditLink to={`/edit/${row.id}`}>Edit</EditLink>
-                      <Button onClick={() => handleDelete(item.id)}>
-                        Delete
-                      </Button>
+                      <Btn onClick={() => handleDelete(item.id)}>Delete</Btn>
                     </ActionWrapper>
                   </TableCell>
                 </TableRow>
@@ -181,8 +136,36 @@ const QuizData = ({ questions, isLoading, error }) => {
           onRowsPerPageChange={handleChangeRowsPerPage}
         />
       </TableContainer>
-      <button>Hompage</button>
-      <button>Add More</button>
+      <BtnWrapper>
+        <Button
+          variant="contained"
+          size="large"
+          style={{
+            alignSelf: "center",
+            marginTop: 20,
+            backgroundColor: "#5777ba",
+            color: "#fff",
+          }}
+          href="/"
+        >
+          {" "}
+          Go To Hompage{" "}
+        </Button>
+        <Button
+          variant="contained"
+          size="large"
+          style={{
+            alignSelf: "center",
+            marginTop: 20,
+            backgroundColor: "#5777ba",
+            color: "#fff",
+          }}
+          href="/new-quiz"
+        >
+          {" "}
+          Add More{" "}
+        </Button>
+      </BtnWrapper>
     </div>
   );
 };
