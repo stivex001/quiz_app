@@ -30,7 +30,7 @@ const QuizEdit = ({ questions }) => {
       answer,
     };
 
-    if (quizData === '') {
+    if (quizData === "") {
       toast.error("You did not make any changes");
     } else {
       const firebaseEndpoint = `https://quiz-app-c5011-default-rtdb.firebaseio.com/quizes/${Id}.json`;
@@ -39,12 +39,6 @@ const QuizEdit = ({ questions }) => {
         .put(firebaseEndpoint, quizData)
         .then((response) => console.log(response))
         .catch((error) => console.log(error));
-
-      setQuestion("");
-      setOption1("");
-      setOption2("");
-      setOption3("");
-      setAnswer("");
       toast.success("Changes Made Successfully!!");
       setTimeout(() => navigate("/quiz-data"), 5000);
     }
