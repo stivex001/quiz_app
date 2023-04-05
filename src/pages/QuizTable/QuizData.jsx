@@ -71,26 +71,56 @@ const QuizData = ({ questions, isLoading, error }) => {
   }
 
   return (
-    <div>
+    <div style={{ padding: "0px 20px" }}>
       <ToastContainer />
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
             <TableRow style={{ backgroundColor: "#f3f2f7" }}>
-              <TableCell style={{ color: "#8281cc", fontWeight: "bold" }}>
-                Question
+              <TableCell
+                style={{
+                  color: "#8281cc",
+                  fontWeight: "bold",
+                  fontSize: "20px",
+                }}
+              >
+                QUESTIONS
               </TableCell>
-              <TableCell style={{ color: "#8281cc", fontWeight: "bold" }}>
-                Options
+              <TableCell
+                style={{
+                  color: "#8281cc",
+                  fontWeight: "bold",
+                  fontSize: "20px",
+                }}
+              >
+                OPTIONS
               </TableCell>
-              <TableCell style={{ color: "#8281cc", fontWeight: "bold" }}>
-                Answer
+              <TableCell
+                style={{
+                  color: "#8281cc",
+                  fontWeight: "bold",
+                  fontSize: "20px",
+                }}
+              >
+                ANSWER
               </TableCell>
-              <TableCell style={{ color: "#8281cc", fontWeight: "bold" }}>
-                Category
+              <TableCell
+                style={{
+                  color: "#8281cc",
+                  fontWeight: "bold",
+                  fontSize: "20px",
+                }}
+              >
+                CATEGORY
               </TableCell>
-              <TableCell style={{ color: "#8281cc", fontWeight: "bold" }}>
-                Action
+              <TableCell
+                style={{
+                  color: "#8281cc",
+                  fontWeight: "bold",
+                  fontSize: "20px",
+                }}
+              >
+                ACTION
               </TableCell>
             </TableRow>
           </TableHead>
