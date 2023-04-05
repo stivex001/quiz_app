@@ -12,35 +12,34 @@ import {
 } from "@mui/material";
 import axios from "axios";
 import { useState } from "react";
-import { Link, useParams } from "react-router-dom";
-import { toast } from "react-toastify";
-import styled from "styled-components";
+import { useParams } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { ActionWrapper, Btn, BtnWrapper, EditLink } from "./quizData.styles";
 
 const QuizData = ({ questions, isLoading, error }) => {
   const { Id } = useParams();
 
-  const editQUiz = questions?.find((question) => question?.id === Id);
-  const [data, setData] = useState();
+  // const editQUiz = questions?.find((question) => question?.id === Id);
+
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
 
   const handleDelete = (id) => {
-    const firebaseEndpoint = `https://quiz-app-c5011-default-rtdb.firebaseio.com/quizes/${Id}.json`;
+    const firebaseEndpoint = `https://quiz-app-c5011-default-rtdb.firebaseio.com/quizes/${id}.json`;
     const confirmed = window.confirm(
       "Are you sure you want to delete this item?"
     );
-    // if (confirmed) {
-    //   axios
-    //     .delete(firebaseEndpoint)
-    //     .then((response) => {
-    //       setData(data.filter((item) => item.id !== id));
-    //       toast.success("Quiz deleted successfully");
-    //       // setTimeout(() => navigate("/quiz-data"), 5000);
-    //     })
+    if (confirmed) {
+      axios
+        .delete(firebaseEndpoint)
+        .then((response) => {
+          toast.success("Quiz deleted successfully");
+          setTimeout(() => window.location.reload(), 5000);
+        })
 
-    //     .catch((error) => console.log(error));
-    // }
+        .catch((error) => console.log(error));
+    }
   };
 
   const handleChangePage = (event, newPage) => {
@@ -73,6 +72,7 @@ const QuizData = ({ questions, isLoading, error }) => {
 
   return (
     <div>
+      <ToastContainer />
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
@@ -119,7 +119,7 @@ const QuizData = ({ questions, isLoading, error }) => {
                   <TableCell style={{ color: "#8887a9" }}>
                     <ActionWrapper>
                       <EditLink to={`/edit/${row.id}`}>Edit</EditLink>
-                      <Btn onClick={() => handleDelete(item.id)}>Delete</Btn>
+                      <Btn onClick={() => handleDelete(row.id)}>Delete</Btn>
                     </ActionWrapper>
                   </TableCell>
                 </TableRow>
