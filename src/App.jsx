@@ -28,27 +28,6 @@ function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState();
 
-  // const fetchQuestions = async () => {
-  //   const res = await axios.get(
-  //     `https://quiz-app-c5011-default-rtdb.firebaseio.com/quizes.json`
-  //   );
-
-  //   const loadedQuiz = [];
-  //   const resData = await res.data;
-
-  //   for (const key in resData) {
-  //     loadedQuiz.push({
-  //       id: key,
-  //       category: resData[key].quizName,
-  //       question: resData[key].question,
-  //       options: resData[key].options,
-  //       answer: resData[key].answer,
-  //     });
-  //   }
-
-  //   setQuestions(loadedQuiz);
-  // };
-
   useEffect(() => {
     const getQuiz = async () => {
       const res = await axios.get(
@@ -70,7 +49,7 @@ function App() {
           options: resData[key].options,
           answer: resData[key].answer,
           points: resData[key].points,
-          time: resData[key].timeLimit
+          time: resData[key].timeLimit,
         });
       }
 
@@ -83,8 +62,6 @@ function App() {
       setError(error.message);
     });
   }, [setQuestions]);
-
-  // console.log(questions.id);
 
   return (
     <Container>

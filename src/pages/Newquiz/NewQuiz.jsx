@@ -26,7 +26,7 @@ const NewQuiz = () => {
       options: [option1, option2, option3],
       answer,
       points,
-      timeLimit
+      timeLimit,
     };
 
     axios
@@ -36,14 +36,6 @@ const NewQuiz = () => {
       )
       .then((response) => console.log(response))
       .catch((error) => console.log(error));
-
-    setQuestion("");
-    setOption1("");
-    setOption2("");
-    setOption3("");
-    setAnswer("");
-    setTimeLimit("");
-    setPoints("");
     toast.success("Quiz Created Successfully!!");
     setTimeout(() => navigate("/quiz-data"), 5000);
   };
