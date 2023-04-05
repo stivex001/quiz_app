@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { mobile } from "../../responsive";
 
 export const ActionWrapper = styled.div`
   display: flex;
@@ -34,4 +35,5 @@ export const BtnWrapper = styled.div`
   display: flex;
   justify-content: space-around;
   margin: 20px;
+  ${mobile({flexDirection: 'column'})}
 `;
