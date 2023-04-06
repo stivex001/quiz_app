@@ -13,9 +13,9 @@ const Home = () => {
           Create Your Quiz
         </Linkk>
         <Linkk to="/demo-quiz">Demo Quiz</Linkk>
-
+        <Board to="/quiz-data">Question Board</Board>
       </LinkItem>
-      <Board to="/quiz-data">Question Board</Board>
+      
     </Container>
   );
 };

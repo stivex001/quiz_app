@@ -15,11 +15,13 @@ export const Desc = styled.h1`
   text-align: center;
   line-height: 2rem;
   max-width: 800px;
-  margin: 0 auto;
+  margin: 70px auto 0;
+
 `;
 export const LinkItem = styled.div`
   display: flex;
-  justify-content: space-between;
+  flex-wrap: wrap;
+width: 100%;
   margin: 50px 30px 0px;
   gap: 20px;
   ${mobile({ flexDirection: "column" })}
@@ -31,9 +33,11 @@ export const Linkk = styled(Link)`
   color: #fff;
   font-weight: bold;
   padding: 24px;
-  width: 100%;
+  width: 50%;
   text-align: center;
   border-radius: 50px;
+  margin: auto;
+  {mobile({ width: "100%" })}
 
   &:hover {
     background-color: ${(prop) =>
@@ -52,6 +56,7 @@ export const Board = styled(Link)`
   text-align: center;
   border-radius: 50px;
   margin: auto;
+  {mobile({ width: "100%" })}
   &:hover {
     background-color: rgba(71,83,110,0.7);
     transition: all 0.5s;
