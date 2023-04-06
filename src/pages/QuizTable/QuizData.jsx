@@ -12,16 +12,11 @@ import {
 } from "@mui/material";
 import axios from "axios";
 import { useState } from "react";
-import { useParams } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { ActionWrapper, Btn, BtnWrapper, EditLink } from "./quizData.styles";
 
 const QuizData = ({ questions, isLoading, error }) => {
-  const { Id } = useParams();
-
-  // const editQUiz = questions?.find((question) => question?.id === Id);
-
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
 
