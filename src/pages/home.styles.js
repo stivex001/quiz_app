@@ -14,6 +14,8 @@ export const Desc = styled.h1`
   font-size: 1.2rem;
   text-align: center;
   line-height: 2rem;
+  max-width: 800px;
+  margin: 0 auto;
 `;
 export const LinkItem = styled.div`
   display: flex;
@@ -36,6 +38,22 @@ export const Linkk = styled(Link)`
   &:hover {
     background-color: ${(prop) =>
       prop.type === "create" ? "#1955cb92" : "#393b3f"};
+    transition: all 0.5s;
+  }
+`;
+
+export const Board = styled(Link)`
+  font-size: 15px;
+  background-color: #47536e;
+  color: #fff;
+  font-weight: bold;
+  padding: 24px;
+  width: 50%;
+  text-align: center;
+  border-radius: 50px;
+  margin: auto;
+  &:hover {
+    background-color: rgba(71,83,110,0.7);
     transition: all 0.5s;
   }
 `;

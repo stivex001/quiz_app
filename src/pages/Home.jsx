@@ -1,4 +1,4 @@
-import { Container, Desc, LinkItem, Linkk } from "./home.styles";
+import { Board, Container, Desc, LinkItem, Linkk } from "./home.styles";
 
 const Home = () => {
   return (
@@ -13,7 +13,9 @@ const Home = () => {
           Create Your Quiz
         </Linkk>
         <Linkk to="/demo-quiz">Demo Quiz</Linkk>
+
       </LinkItem>
+      <Board to="/quiz-data">Question Board</Board>
     </Container>
   );
 };
