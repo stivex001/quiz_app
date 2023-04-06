@@ -84,7 +84,7 @@ const NewQuiz = () => {
       />
       <Input
         type="text"
-        placeholder="Answer"
+        placeholder="Option 4 (Answer)"
         value={answer}
         onChange={(event) => setAnswer(event.target.value)}
         required
