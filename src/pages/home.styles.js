@@ -16,15 +16,14 @@ export const Desc = styled.h1`
   line-height: 2rem;
   max-width: 800px;
   margin: 70px auto 0;
-
 `;
 export const LinkItem = styled.div`
   display: flex;
   flex-wrap: wrap;
-width: 100%;
+  width: 100%;
   margin: 50px 30px 0px;
   gap: 20px;
-  ${mobile({ flexDirection: "column" })}
+  ${mobile({ flexDirection: "column", margin: "50px 0 0 " })}
 `;
 export const Linkk = styled(Link)`
   font-size: 15px;
