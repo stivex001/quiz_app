@@ -100,6 +100,7 @@ const QuizGround = ({ name, score, setScore,  }) => {
             correct={questions[currentQuestion]?.answer}
             score={score}
             setScore={setScore}
+            isLastQuestion={currentQuestion === questions.length - 1}
           />
         </>
       ) : (
