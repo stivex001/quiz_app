@@ -11,29 +11,54 @@ import {
   TableRow,
 } from "@mui/material";
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { ActionWrapper, Btn, BtnWrapper, EditLink } from "./quizData.styles";
 
-const QuizData = ({ questions, isLoading, error }) => {
+const QuizData = () => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
+  const [questions, setQuestions] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
 
-  const handleDelete = (id) => {
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setIsLoading(true);
+      try {
+        const response = await axios.get("https://quiz-app-c5011-default-rtdb.firebaseio.com/quizes.json");
+        const data = response.data;
+        const fetchedQuestions = [];
+        for (const key in data) {
+          fetchedQuestions.push({
+            id: key,
+            ...data[key],
+          });
+        }
+        setQuestions(fetchedQuestions);
+      } catch (error) {
+        setError(error.message);
+      }
+      setIsLoading(false);
+    };
+    fetchData();
+  }, []);
+
+  const handleDelete = async (id) => {
     const firebaseEndpoint = `https://quiz-app-c5011-default-rtdb.firebaseio.com/quizes/${id}.json`;
     const confirmed = window.confirm(
       "Are you sure you want to delete this item?"
     );
     if (confirmed) {
-      axios
-        .delete(firebaseEndpoint)
-        .then((response) => {
-          toast.success("Quiz deleted successfully");
-          setTimeout(() => window.location.reload(), 5000);
-        })
-
-        .catch((error) => console.log(error));
+      try {
+        await axios.delete(firebaseEndpoint);
+        toast.success("Quiz deleted successfully");
+        onDataChange();
+      } catch (error) {
+        console.log(error);
+      }
     }
   };
 
@@ -139,7 +164,7 @@ const QuizData = ({ questions, isLoading, error }) => {
                     {row.answer}
                   </TableCell>
                   <TableCell style={{ color: "#8887a9" }}>
-                    {row.category.toUpperCase()}
+                    {row.category?.toUpperCase()}
                   </TableCell>
                   <TableCell style={{ color: "#8887a9" }}>
                     <ActionWrapper>

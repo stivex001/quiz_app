@@ -30,38 +30,40 @@ function App() {
 
   useEffect(() => {
     const getQuiz = async () => {
-      const res = await axios.get(
-        "https://quiz-app-c5011-default-rtdb.firebaseio.com/quizes.json"
-      );
+      try {
+        const res = await axios.get(
+          "https://quiz-app-c5011-default-rtdb.firebaseio.com/quizes.json"
+        );
 
-      if (res.statusText !== "OK") {
-        throw new Error("Something went wrong");
+        if (res.statusText !== "OK") {
+          throw new Error("Something went wrong");
+        }
+        const resData = await res.data;
+
+        const loadedQuiz = [];
+
+        for (const key in resData) {
+          loadedQuiz.push({
+            id: key,
+            category: resData[key].quizName,
+            question: resData[key].question,
+            options: resData[key].options,
+            answer: resData[key].answer,
+            points: resData[key].points,
+            time: resData[key].timeLimit,
+          });
+        }
+
+        setQuestions(loadedQuiz);
+        setIsLoading(false);
+      } catch (error) {
+        setIsLoading(false);
+        setError(error.message);
       }
-      const resData = await res.data;
-
-      const loadedQuiz = [];
-
-      for (const key in resData) {
-        loadedQuiz.push({
-          id: key,
-          category: resData[key].quizName,
-          question: resData[key].question,
-          options: resData[key].options,
-          answer: resData[key].answer,
-          points: resData[key].points,
-          time: resData[key].timeLimit,
-        });
-      }
-
-      setQuestions(loadedQuiz);
-      setIsLoading(false);
     };
 
-    getQuiz().catch((error) => {
-      setIsLoading(false);
-      setError(error.message);
-    });
-  }, [setQuestions]);
+    getQuiz();
+  }, []);
 
   return (
     <Container>
@@ -73,16 +75,7 @@ function App() {
           element={<Quiz name={name} setName={setName} questions={questions} />}
         />
         <Route path="/new-quiz" element={<NewQuiz />} />
-        <Route
-          path="/quiz-data"
-          element={
-            <QuizData
-              questions={questions}
-              isLoading={isLoading}
-              error={error}
-            />
-          }
-        />
+        <Route path="/quiz-data" element={<QuizData />} />
         <Route
           path="/quiz"
           element={
@@ -97,7 +90,7 @@ function App() {
             />
           }
         />
-        <Route path="/result" element={<Result score={score} name={name} />} />
+        <Route path="/result" element={<Result score={score} name={name} questions={questions} />} />
         <Route path="/edit/:Id" element={<QuizEdit questions={questions} />} />
       </Routes>
     </Container>

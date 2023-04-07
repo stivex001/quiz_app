@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Container, Title } from "./result.styles";
 
-const Result = ({ name, score }) => {
+const Result = ({ name, score, questions }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -14,7 +14,7 @@ const Result = ({ name, score }) => {
 
   return (
     <Container>
-      <Title>Final Score : {score}</Title>
+      <Title>Final Score : {score} / {questions.length}</Title>
       <Button
         variant="contained"
         size="large"
