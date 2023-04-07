@@ -28,6 +28,7 @@ const Question = ({
   correct,
   score,
   setScore,
+  isLastQuestion,
 }) => {
   const [selected, setselected] = useState();
   const [error, setError] = useState(false);
@@ -58,7 +59,7 @@ const Question = ({
   };
 
   const handleNext = () => {
-    if (currentQuestion >= questions.length) {
+    if (currentQuestion === questions.length - 1) {
       navigate("/result");
     } else if (selected) {
       setcurrentQuestion(currentQuestion + 1);
@@ -71,7 +72,7 @@ const Question = ({
   return (
     <Container>
       <h1>
-        Question {currentQuestion + 1} / {questions.length}{" "}
+        Question {currentQuestion + 1} / {questions.length - 1}{" "}
       </h1>
       <div className="singleQuestion">
         <h2> {questions[currentQuestion]?.question} </h2>
@@ -109,7 +110,7 @@ const Question = ({
             style={{ width: 185 }}
             onClick={handleNext}
           >
-            Next Question
+            {isLastQuestion ? "Finish Quiz" : "Next Question"}
           </Button>
         </div>
       </div>
