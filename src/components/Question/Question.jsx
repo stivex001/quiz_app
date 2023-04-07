@@ -72,7 +72,7 @@ const Question = ({
   return (
     <Container>
       <h1>
-        Question {currentQuestion + 1} / {questions.length - 1}{" "}
+        Question {currentQuestion + 1} / {questions.length}{" "}
       </h1>
       <div className="singleQuestion">
         <h2> {questions[currentQuestion]?.question} </h2>

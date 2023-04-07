@@ -22,7 +22,7 @@ const Result = ({ name, score, questions }) => {
         {" "}
         Your Final Score :{" "}
         <Span style={{ color: "#5777ba", border: "none" }}>
-          {score} / {questions.length - 1}
+          {score} / {questions.length}
         </Span>
       </Title>
       <Button
