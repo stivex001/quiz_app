@@ -23,12 +23,13 @@ const QuizData = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
 
-
   useEffect(() => {
     const fetchData = async () => {
       setIsLoading(true);
       try {
-        const response = await axios.get("https://quiz-app-c5011-default-rtdb.firebaseio.com/quizes.json");
+        const response = await axios.get(
+          "https://quiz-app-c5011-default-rtdb.firebaseio.com/quizes.json"
+        );
         const data = response.data;
         const fetchedQuestions = [];
         for (const key in data) {
@@ -55,7 +56,9 @@ const QuizData = () => {
       try {
         await axios.delete(firebaseEndpoint);
         toast.success("Quiz deleted successfully");
-        onDataChange();
+        setTimeout(() => {
+          window.location.reload();
+        }, 5000);
       } catch (error) {
         console.log(error);
       }
@@ -164,7 +167,7 @@ const QuizData = () => {
                     {row.answer}
                   </TableCell>
                   <TableCell style={{ color: "#8887a9" }}>
-                    {row.category?.toUpperCase()}
+                    {row.quizName?.toUpperCase()}
                   </TableCell>
                   <TableCell style={{ color: "#8887a9" }}>
                     <ActionWrapper>

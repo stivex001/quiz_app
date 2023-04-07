@@ -1,12 +1,39 @@
 import { CircularProgress } from "@mui/material";
+import axios from "axios";
 import { useEffect, useState } from "react";
 import Question from "../../components/Question/Question";
 import Timer from "../../components/Timer/Timer";
 import { Board, Container, CountDown, Info, Span } from "./quizGround.styles";
 
-const QuizGround = ({ name, questions, score, setScore, isLoading, error }) => {
+const QuizGround = ({ name, score, setScore,  }) => {
   const [options, setOptions] = useState([]);
   const [currentQuestion, setcurrentQuestion] = useState(0);
+  const [questions, setQuestions] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
+
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setIsLoading(true);
+      try {
+        const response = await axios.get("https://quiz-app-c5011-default-rtdb.firebaseio.com/quizes.json");
+        const data = response.data;
+        const fetchedQuestions = [];
+        for (const key in data) {
+          fetchedQuestions.push({
+            id: key,
+            ...data[key],
+          });
+        }
+        setQuestions(fetchedQuestions);
+      } catch (error) {
+        setError(error.message);
+      }
+      setIsLoading(false);
+    };
+    fetchData();
+  }, []);
 
   useEffect(() => {
     setOptions(

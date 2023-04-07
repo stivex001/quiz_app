@@ -58,7 +58,7 @@ const Question = ({
   };
 
   const handleNext = () => {
-    if (currentQuestion >= questions.length - 1) {
+    if (currentQuestion >= questions.length) {
       navigate("/result");
     } else if (selected) {
       setcurrentQuestion(currentQuestion + 1);
@@ -70,17 +70,19 @@ const Question = ({
 
   return (
     <Container>
-      <h1>Question {currentQuestion + 1} / {questions.length} </h1>
+      <h1>
+        Question {currentQuestion + 1} / {questions.length}{" "}
+      </h1>
       <div className="singleQuestion">
         <h2> {questions[currentQuestion]?.question} </h2>
         <div className="options">
           {error && <ErrorMessage>Plese select an option first</ErrorMessage>}
 
           {options &&
-            options.map((option) => (
+            options.map((option, index) => (
               <button
                 onClick={() => handleCheck(option)}
-                key={option}
+                key={index}
                 disabled={selected}
                 className={`singleOption ${selected && handleSelect(option)}`}
               >
