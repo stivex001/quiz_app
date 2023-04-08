@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Button, Form, Input, Label } from "./newQuz.styles";
+import { Board, Button, Form, Input, Label } from "./newQuz.styles";
 
 const NewQuiz = () => {
   const [quizName, setQuizName] = useState("");
@@ -109,6 +109,7 @@ const NewQuiz = () => {
       />
 
       <Button type="submit">Create Quiz</Button>
+      <Board onClick={() => navigate(-1)}>Go Back</Board>
     </Form>
   );
 };

@@ -38,3 +38,18 @@ export const Button = styled.button`
     background-color: #3e8e41;
   }
 `;
+
+export const Board = styled.button`
+padding: 8px 16px;
+  font-size: 18px;
+  background-color: rgb(87,119,186);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: rgba(87,119,186,0.7);
+    transition: all 0.5s;
+  }
+`;
