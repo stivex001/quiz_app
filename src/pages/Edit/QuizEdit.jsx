@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Button, Form, Input, Label } from "../Newquiz/newQuz.styles";
+import { Board, Button, Form, Input, Label } from "../Newquiz/newQuz.styles";
 
 const QuizEdit = ({ questions }) => {
   const navigate = useNavigate();
@@ -12,8 +12,8 @@ const QuizEdit = ({ questions }) => {
   const editQUiz = questions?.find((question) => question?.id === Id);
 
   const [quizName, setQuizName] = useState(editQUiz?.category);
-  const [points, setPoints] = useState("");
-  const [timeLimit, setTimeLimit] = useState("");
+  const [points, setPoints] = useState(editQUiz?.points);
+  const [timeLimit, setTimeLimit] = useState(editQUiz?.timeLimit);
   const [question, setQuestion] = useState(editQUiz?.question);
   const [option1, setOption1] = useState(editQUiz?.options[0]);
   const [option2, setOption2] = useState(editQUiz?.options[1]);
@@ -112,6 +112,7 @@ const QuizEdit = ({ questions }) => {
       />
 
       <Button type="submit">Submit</Button>
+      <Board onClick={() => navigate(-1)}>Go Back</Board>
     </Form>
   );
 };
