@@ -1,46 +1,58 @@
-My Vite Project
-This is a simple guide to help you create and install a new project using Vite. Vite is a build tool for modern web applications that provides fast and optimized development server and build setup.
+<h1 align="center">
+  <a href="https://goreeva-quiz.netlify.app/">
+    QuizApp
+  </a>
+</h1>
 
-Prerequisites
-Before you begin, make sure you have the following installed on your system:
 
-Node.js (version 12 or above)
-npm (version 6 or above)
-Getting Started
-To create a new project using Vite, follow these steps:
+<p align="center">
+  QuizApp is a free and open-source quiz application that lets you play fully customized quizzes right in the browser.
+</p>
 
-Open your terminal and navigate to the directory where you want to create your new project.
-Run the following command to create a new project using the Vite template:
-arduino
-Copy code
-npm init vite@latest my-vite-project -- --template [template-name]
-Replace [template-name] with the name of the template you want to use. You can choose from a variety of templates such as vanilla, react, vue, preact, and more.
+![quiz-app](https://user-images.githubusercontent.com/48409548/104132046-a39e5b80-539c-11eb-9df3-28d52e499a6c.png)
 
-Once the project is created, navigate to the project directory by running:
+## Built with
 
-Copy code
-cd my-vite-project
-Install the project dependencies by running:
-Copy code
+- [React](http://reactjs.org)
+- [Styled-component](https://styled-components.com/)
+- [Firebase](https://quiz-app-c5011-default-rtdb.firebaseio.com/quizes/.json)
+
+## Development
+
+To get a local copy of the code, clone it using git:
+
+```
+git clone https://github.com/stivex001/quiz_app.git
+cd quiz-app
+```
+
+Install dependencies:
+
+```
 npm install
-Finally, start the development server by running:
-arduino
-Copy code
+```
+
+Now, you can start a local web server by running:
+
+```
 npm run dev
-This will start the Vite development server and your project will be available at http://localhost:3000.
+```
 
-Building for Production
-To build your project for production, run the following command:
+And then open http://localhost:5173/ to view it in the browser.
 
+#### Available Scripts
 
-Copy code
-npm run build
-This will create a production-ready build of your project in the dist directory.
+In this project, you can run the following scripts:
 
-Conclusion
-That's it! You now have a new project created and installed using Vite. Happy coding!
+| Script        | Description                                                             |
+| ------------- | ----------------------------------------------------------------------- |
+| npm start     | Runs the app in the development mode.                                   |
+| npm test      | Launches the test runner in the interactive watch mode.                 |
+| npm run build | Builds the app for production to the `build` folder.                    |
+| npm run eject | This command will remove the single build dependency from your project. |
 
+## Credits
 
+QuizApp is built and maintained by [Stephen Adeyemo](https://github.com/stivex001).
 
-
-
+## License
